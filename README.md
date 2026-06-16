@@ -1,4 +1,4 @@
-# 🧬 Differential Gene Expression Analysis — Breast Cancer vs. Normal Tissue
+# 🧬 Differential Gene Expression Analysis: Breast Cancer vs. Normal Tissue
 
 **Portfolio project by Szonja Lippert** · MSc Bioinformatics, Wageningen University
 
@@ -8,7 +8,7 @@
 
 This project performs a complete Differential Gene Expression (DGE) analysis comparing **breast cancer tumor tissue** against **adjacent normal tissue**. The dataset contains expression profiles for 358 curated genes across 22 samples (12 tumor, 10 normal), modelled on the publicly available GEO dataset [GSE7904](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7904) (Affymetrix HG-U133Plus2 microarray).
 
-The analysis recovers well-established hallmarks of breast cancer at the transcriptomic level — from proliferation-marker upregulation to EMT signatures and apoptosis suppression — demonstrating a solid understanding of transcriptomics, statistical testing, and biological interpretation.
+The analysis recovers well-established hallmarks of breast cancer at the transcriptomic level, from proliferation-marker upregulation to EMT signatures and apoptosis suppression, demonstrating a solid understanding of transcriptomics, statistical testing, and biological interpretation.
 
 ---
 
