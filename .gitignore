@@ -1,1 +1,5 @@
-"files.zip" 
+files.zip
+geo_cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
