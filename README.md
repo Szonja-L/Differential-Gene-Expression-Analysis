@@ -6,7 +6,7 @@
 
 ## Overview
 
-This project performs a complete Differential Gene Expression (DGE) analysis comparing **breast cancer tumor tissue** against **histologically normal breast tissue**, using **real microarray data** downloaded directly from the publicly available GEO series [GSE7904](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7904) (Richardson et al., Affymetrix HG-U133 Plus 2 / GPL570) via the `GEOparse` API — no simulated or synthetic values.
+This project performs a complete Differential Gene Expression (DGE) analysis comparing **breast cancer tumor tissue** against **histologically normal breast tissue**, using **real microarray data** downloaded directly from the publicly available GEO series [GSE7904](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7904) (Richardson et al., Affymetrix HG-U133 Plus 2 / GPL570) via the `GEOparse` API - no simulated or synthetic values.
 
 The real series contains 62 samples; this analysis compares the **43 tumor samples** (spanning Basal-like, BRCA1-associated, and Non-BLC subtypes) against the **7 samples explicitly labelled "Normal breast."** A further 12 samples labelled "Normal organelle" were deliberately excluded from the main comparison — GEO's own metadata for that group is ambiguous about tissue origin (most likely sorted normal epithelial cells rather than whole tissue), and pooling two different cell populations under one "Normal" label would undermine the comparison rather than strengthen it. See **Data & Limitations** below.
 
@@ -26,7 +26,7 @@ Genome-wide testing (~20,000+ unique genes after probe-to-gene collapse) is perf
 | Statistical test | Welch's t-test + Benjamini-Hochberg FDR correction |
 | Samples | 43 Tumor (Basal/BRCA1/Non-BLC) vs. 7 Normal breast — real GSM accessions |
 
-BH-FDR correction is applied across the full genome-wide search space (all 22,880 probe-collapsed entries, including uncharacterized `LOC`-prefixed loci) — correcting for the full number of tests performed is what makes the FDR control valid. The reported significant count (2,489) then excludes `LOC` loci from the *headline* figure, since those aren't validated, named genes. Roughly 3× more genes are significantly *lost* in tumor than gained — consistent with this cohort's aggressive basal-like/BRCA1-associated composition: tumors here are shedding the differentiated secretory and myoepithelial transcriptional programs of normal breast tissue, while gains concentrate sharply in cell-cycle machinery.
+BH-FDR correction is applied across the full genome-wide search space (all 22,880 probe-collapsed entries, including uncharacterized `LOC`-prefixed loci) - correcting for the full number of tests performed is what makes the FDR control valid. The reported significant count (2,489) then excludes `LOC` loci from the *headline* figure, since those aren't validated, named genes. Roughly 3× more genes are significantly *lost* in tumor than gained - consistent with this cohort's aggressive basal-like/BRCA1-associated composition: tumors here are shedding the differentiated secretory and myoepithelial transcriptional programs of normal breast tissue, while gains concentrate sharply in cell-cycle machinery.
 
 ### Top Upregulated Genes (tumor vs. normal)
 `COL11A1` (+6.15) · `PITX1` (+5.62) · `S100P` (+5.52) · `FOXM1` (+5.27) · `TOP2A` (+5.24) · `ASPM` (+5.21) · `NEK2` (+5.14) · `MELK` (+5.02) · `CEP55` (+4.84)
@@ -85,7 +85,7 @@ Raw values are real **dChip-normalised Affymetrix signal intensities** for GSE79
 - It handles unequal sample sizes correctly — this dataset is genuinely unbalanced (43 vs. 7), which is typical of real clinical microarray cohorts and a stronger demonstration of the test's necessity than an artificially balanced design
 
 ### 3. Multiple Testing Correction
-Raw p-values were corrected using the **Benjamini-Hochberg (BH) FDR procedure** across the full genome-wide search space — all 22,880 probe-collapsed entries, including uncharacterized `LOC`-prefixed loci. Correcting against the complete number of tests performed (not a pre-filtered subset) is what keeps the FDR control statistically valid. `LOC` loci are excluded only afterward, from the final *reported* set of significant genes, since they aren't validated named genes — not from the correction itself. A gene was called significant if:
+Raw p-values were corrected using the **Benjamini-Hochberg (BH) FDR procedure** across the full genome-wide search space - all 22,880 probe-collapsed entries, including uncharacterized `LOC`-prefixed loci. Correcting against the complete number of tests performed (not a pre-filtered subset) is what keeps the FDR control statistically valid. `LOC` loci are excluded only afterward, from the final *reported* set of significant genes, since they aren't validated named genes - not from the correction itself. A gene was called significant if:
 - **adj. p-value < 0.05** AND
 - **|log₂ fold change| ≥ 1.0** (i.e., ≥ 2-fold difference)
 
@@ -99,7 +99,7 @@ Raw p-values were corrected using the **Benjamini-Hochberg (BH) FDR procedure** 
 
 ## Biological Interpretation
 
-Genome-wide unbiased testing surfaces a different — and arguably more telling — set of top hits than a pre-curated gene panel would. None of the "textbook" markers used in early-stage exploratory work (MKI67, ERBB2, ESR1, CDH1) make the top 15 by effect size here; the strongest real signal in this specific cohort is dominated by two coherent biological themes:
+Genome-wide unbiased testing surfaces a different - and arguably more telling - set of top hits than a pre-curated gene panel would. None of the "textbook" markers used in early-stage exploratory work (MKI67, ERBB2, ESR1, CDH1) make the top 15 by effect size here; the strongest real signal in this specific cohort is dominated by two coherent biological themes:
 
 ### Upregulated in Tumor
 - **Mitotic / cell-cycle machinery**: FOXM1, ASPM, NEK2, MELK, CEP55, CDC20, CKAP2L, CENPE, CENPA, TOP2A → this cluster of kinetochore and mitotic-checkpoint genes is one of the most consistently reported signatures in aggressive, high-proliferation breast cancers, and matches this cohort's enrichment for basal-like and BRCA1-associated subtypes
@@ -113,17 +113,17 @@ Genome-wide unbiased testing surfaces a different — and arguably more telling 
 - **Hormone-responsive normal epithelium**: CITED1 → an estrogen-responsive gene specifically marking normal, hormonally-responsive breast epithelium
 - **Wnt antagonism lost**: WIF1 → loss of this Wnt-pathway inhibitor is a recurrent finding in real breast cancer datasets
 
-This pattern — strong mitotic/proliferation signal up, broad loss of differentiated secretory/myoepithelial/stromal identity down — is a well-documented signature of aggressive, basal-like breast cancer, and is a different (and more authentic) story than a curated hallmark-pathway panel would tell on its own.
+This pattern — strong mitotic/proliferation signal up, broad loss of differentiated secretory/myoepithelial/stromal identity down - is a well-documented signature of aggressive, basal-like breast cancer, and is a different (and more authentic) story than a curated hallmark-pathway panel would tell on its own.
 
 ---
 
 ## Data & Limitations
 
-- **Real data, real noise**: all values come from real patient samples (real GSM accessions, traceable on NCBI GEO), not a calibrated simulation — but that also means the results reflect genuine biological and technical variability, not a clean designed experiment.
+- **Real data, real noise**: all values come from real patient samples (real GSM accessions, traceable on NCBI GEO), not a calibrated simulation - but that also means the results reflect genuine biological and technical variability, not a clean designed experiment.
 - **Unbalanced groups**: 43 tumor vs. 7 normal is the real composition of this series. This is statistically valid (Welch's test is designed for exactly this) but does reduce power to detect differences relative to a balanced design.
-- **"Normal organelle" samples excluded**: 12 of the 62 samples are labelled "Normal organelle" in GEO with characteristically sparse metadata. Rather than assume they're equivalent to the "Normal breast" samples, they were excluded from the main comparison — a deliberate, documented choice over a guess.
+- **"Normal organelle" samples excluded**: 12 of the 62 samples are labelled "Normal organelle" in GEO with characteristically sparse metadata. Rather than assume they're equivalent to the "Normal breast" samples, they were excluded from the main comparison - a deliberate, documented choice over a guess.
 - **Tumor subtypes pooled**: Basal-like, BRCA1-associated, and Non-BLC tumors are combined into a single "Tumor" group for the headline comparison. A subtype-stratified comparison (e.g. Basal vs. Normal only) would be a natural follow-up and is listed under Future Directions.
-- **Microarray, not RNA-seq**: probe-level Affymetrix data has known limitations (cross-hybridisation, probe redundancy, fixed transcript coverage) relative to RNA-seq — the companion Bulk RNA-seq Pipeline project in this portfolio covers that platform directly.
+- **Microarray, not RNA-seq**: probe-level Affymetrix data has known limitations (cross-hybridisation, probe redundancy, fixed transcript coverage) relative to RNA-seq - the companion Bulk RNA-seq Pipeline project in this portfolio covers that platform directly.
 
 ---
 
